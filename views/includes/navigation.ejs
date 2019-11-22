@@ -1,0 +1,38 @@
+<header>
+  <div class="container">
+    <nav>
+      <ul class="list">
+        <li>
+          <a class="<%= path === '/' ? 'active' : '' %>" href="/">shop</a>
+        </li>
+        <li>
+          <a
+            class="<%= path === '/add-product' ? 'active' : '' %>"
+            href="/add-product"
+            >add Product
+          </a>
+        </li>
+        <li>
+          <a
+            class="<%= path === '/products' ? 'active' : '' %>"
+            href="/products"
+          >
+            my products</a
+          >
+        </li>
+        <li>
+          <a class="<%= path === '/cart' ? 'active' : '' %>" href="/cart"
+            >cart</a
+          >
+        </li>
+        <li>
+          <a
+            class="<%= path === '/admin-products' ? 'active' : '' %>"
+            href="/admin-products"
+            >Admin product</a
+          >
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
