@@ -5,6 +5,8 @@ const getError = require("./controllers/error");
 const adminRoutes = require("./routes/admin");
 const shopRouter = require("./routes/shop");
 const bodyParser = require("body-parser");
+const mongoConnect = require('./util/database').mongoConnect;
+
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.set("view engine", "ejs");
@@ -16,6 +18,10 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(getError.error);
 
-app.listen(3000);
+
+
+mongoConnect(() => { 
+    app.listen(3000); 
+});
 
 //You can never send a response and then use next() . Doing that will result in errors.
