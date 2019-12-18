@@ -1,37 +1,58 @@
 const Product = require("../models/product");
 
 exports.getIndex = (req, res, next) => {
-  Product.fetchAll(products => {
-    console.log(products);
-    res.render("shop/index", {
-      prods: products,
-      headTitle: "SHOPPING",
-      path: "/"
+  Product.find()
+    .then((products) => {
+      res.render("shop/index", {
+        prods: products,
+        headTitle: "SHOPPING",
+        path: "/"
+      });
+    })
+    .catch((err) => {
+      throw err;
     });
-  });
 };
 
 exports.getProducts = (req, res, next) => {
-  Product.fetchAll(products => {
-    console.log(products);
-    res.render("shop/product-list", {
-      prods: products,
-      headTitle: "ALL-PRODUCTS",
-      path: "/products"
+  Product.find()
+    .then((products) => {
+      res.render("shop/product-list", {
+        prods: products,
+        headTitle: "ALL-PRODUCTS",
+        path: "/products"
+      });
+    })
+    .catch((err) => {
+      throw err;
     });
-  });
 };
 
-exports.getCart = (req, res, next) => {
-  res.render("shop/cart", {
-    path: "/cart",
-    headTitle: "Cart"
-  });
+exports.getProduct = (req, res, next) => {
+  const prodId = req.params.productId; //Getting the product as part of the url in the shop.js Route.
+  Product.findById(prodId)
+    .then((product) => {
+      res.render("shop/product-detail", {
+        product: product,
+        headTitle: "product.title",
+        path: "/products"
+      });
+    })
+    .catch((err) => {
+      throw err;
+    });
 };
 
-exports.getCheckout = (req, res, next) => {
-  res.render("shop/checkout", {
-    path: "/checkout",
-    headTitle: "Checkout"
-  });
-};
+// exports.getCart = (req, res, next) => {
+//   res.render("shop/cart", {
+//     path: "/cart",
+//     headTitle: "Cart"
+//   });
+// };
+
+// exports.getCheckout = (req, res, next) => {
+//   res.render("shop/checkout", {
+//     path: "/checkout",
+//     headTitle: "Checkout"
+//   });
+// };

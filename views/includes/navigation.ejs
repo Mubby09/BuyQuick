@@ -1,4 +1,4 @@
-<header>
+<header class="header">
   <div class="container">
     <nav>
       <ul class="list">
@@ -32,6 +32,19 @@
             >Admin product</a
           >
         </li>
+        <ul class="Logsig">
+          <li>
+            <a class="<%= path === '/login' ? 'active' : '' %>" href="/login"
+              >Login</a
+            >
+          </li>
+
+          <li>
+            <a class="<%= path === '/signUp' ? 'active' : '' %>" href="/signup"
+              >Sign Up</a
+            >
+          </li>
+        </ul>
       </ul>
     </nav>
   </div>

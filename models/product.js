@@ -1,18 +1,23 @@
-const getDatabase = require('../util/database').getDatabase;
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-class Product{
-  constructor(title, price, description, imageURL) {
-this.title = title;
-this.price = price;
-this.description = description;
-this.imageURL = imageURL;
+const productSchema = new Schema({
+  title: {
+    type: String,
+    required: true
+  },
+  price: {
+    type: Number,
+    required: true
+  },
+  description: {
+    type: String,
+    required: true
+  },
+  imageUrl: {
+    type: String,
+    required: true
   }
-save(){
+});
 
-}
-}
-
-
-
-
-module.exports = Product;
+module.exports = mongoose.model("Product", productSchema);
