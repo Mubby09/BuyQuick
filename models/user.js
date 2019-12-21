@@ -9,7 +9,13 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true
-  }
+  },
+  tokenReset: String,
+  tokenResetExpiration: Date
+  // productId: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: "Product"
+  // }
 });
 
 module.exports = mongoose.model("User", userSchema);

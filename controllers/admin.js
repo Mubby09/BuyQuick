@@ -3,9 +3,9 @@ const Product = require("../models/product");
 exports.getAddProduct = (req, res, next) => {
   console.log("I'm here again");
   res.render("admin/add-product", {
-    // prods: products,
     headTitle: "ADD-PRODUCT",
-    path: "/add-product"
+    path: "/add-product",
+    isAuthenticated: req.session.loggedIn
   });
 };
 
@@ -18,7 +18,8 @@ exports.postAddProduct = (req, res, next) => {
     title: title,
     price: price,
     imageUrl: imageUrl,
-    description: description
+    description: description,
+    userId: req.user
   });
   product
     .save()
@@ -38,7 +39,8 @@ exports.getAdminProducts = (req, res, next) => {
       res.render("admin/admin-products", {
         prods: products,
         headTitle: "Admin Products",
-        path: "/admin-products"
+        path: "/admin-products",
+        isAuthenticated: req.session.loggedIn
       });
     })
     .catch((err) => {

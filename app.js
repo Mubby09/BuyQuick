@@ -9,10 +9,10 @@ const authRouter = require("./routes/auth");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
+const flash = require("connect-flash");
 
 const MONGODB_URI =
   "mongodb+srv://Mubby09:RLimmxv9VO7fn0y8@cluster0-mrvec.mongodb.net/shop";
-
 const store = new MongoDBStore({
   uri: MONGODB_URI,
   collection: "sessions"
@@ -29,8 +29,24 @@ app.use(
   })
 );
 
+app.use(flash());
+
 app.set("view engine", "ejs");
 app.set("views", "views");
+
+// app.use((req, res, next) => {
+//   if (!req.session.user) {
+//     return next();
+//     User.findById(req.session.user._id)
+//       .then((user) => {
+//         req.user = user;
+//         next();
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//       });
+//   }
+// });
 
 app.use(adminRoutes);
 app.use(shopRouter);

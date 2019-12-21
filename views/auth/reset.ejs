@@ -9,17 +9,13 @@
           <% if (errorMessage) { %>
             <div class="error-message"> <%= errorMessage %> </div>
           <% } %>
-        <form action="/signup" method="POST">
+        <form action="/reset" method="POST">
           <div class="form-control">
             <label for="email">Email</label>
             <input type="email" name="email" />
            
           </div>
-          <div class="form-control">
-          <label for="password">Password</label>
-          <input type="password" name="password" id="password" />
-        </div>
-        <button class="btn" type="submit">SignUp</button>
+        <button class="btn" type="submit">Reset Password</button>
         </form>
       </div>
     </main>
