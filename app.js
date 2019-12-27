@@ -10,6 +10,7 @@ const bodyParser = require("body-parser");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const flash = require("connect-flash");
+const csrf = require("csurf");
 
 const MONGODB_URI =
   "mongodb+srv://Mubby09:RLimmxv9VO7fn0y8@cluster0-mrvec.mongodb.net/shop";
@@ -17,6 +18,8 @@ const store = new MongoDBStore({
   uri: MONGODB_URI,
   collection: "sessions"
 });
+
+const csrfProtection = csrf();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
@@ -28,6 +31,8 @@ app.use(
     store: store
   })
 );
+
+app.use(csrfProtection);
 
 app.use(flash());
 
@@ -47,6 +52,12 @@ app.set("views", "views");
 //       });
 //   }
 // });
+
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.session.loggedIn;
+  res.locals.csrfToken = req.csrfToken();
+  next();
+});
 
 app.use(adminRoutes);
 app.use(shopRouter);

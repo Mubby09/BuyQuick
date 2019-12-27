@@ -6,8 +6,9 @@ exports.getIndex = (req, res, next) => {
       res.render("shop/index", {
         prods: products,
         headTitle: "SHOPPING",
-        path: "/",
-        isAuthenticated: req.session.loggedIn
+        path: "/"
+        // isAuthenticated: req.session.loggedIn,
+        // csrfToken: req.csrfToken()
       });
     })
     .catch((err) => {
@@ -16,7 +17,7 @@ exports.getIndex = (req, res, next) => {
 };
 
 exports.getProducts = (req, res, next) => {
-  Product.find()
+  Product.find({})
     .then((products) => {
       res.render("shop/product-list", {
         prods: products,

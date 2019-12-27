@@ -33,7 +33,7 @@ exports.postAddProduct = (req, res, next) => {
 };
 
 exports.getAdminProducts = (req, res, next) => {
-  Product.find()
+  Product.find({ userId: true })
     .then((products) => {
       console.log(products);
       res.render("admin/admin-products", {

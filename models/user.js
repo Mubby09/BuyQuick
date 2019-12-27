@@ -10,8 +10,8 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  tokenReset: String,
-  tokenResetExpiration: Date
+  tokenReset: String
+  // tokenResetExpiration: { type: Date, default: Date.now }
   // productId: {
   //   type: Schema.Types.ObjectId,
   //   ref: "Product"

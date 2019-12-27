@@ -7,6 +7,7 @@
     <main>
       <div class="container">
         <form action="/add-product" method="POST">
+          <input type="hidden" name="_csrf" value='<%= csrfToken %>'>
           <div class="form-control">
             <label for="title">Title</label>
             <input type="text" name="title" />
