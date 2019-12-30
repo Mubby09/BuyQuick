@@ -4,10 +4,28 @@ const path = require("path");
 const router = express.Router();
 const adminController = require("../controllers/admin");
 const isAuth = require("../middleware/is-auth");
+const { body, check } = require("express-validator/check");
 
 router.get("/add-product", isAuth, adminController.getAddProduct);
 
-router.post("/add-product", isAuth, adminController.postAddProduct);
+router.post(
+  "/add-product",
+  [
+    check("title")
+      .isAlphanumeric()
+      .isLength({ min: 2 })
+      .trim()
+      .withMessage("Invalid Title, Try again"),
+    // body("price").isFloat(),
+    // body("imageUrl").isURL(),
+    body("description")
+      .trim()
+      .isLength({ min: 5, max: 300 })
+      .withMessage("Invalid Description, Try again")
+  ],
+  isAuth,
+  adminController.postAddProduct
+);
 
 router.get("/admin-products", isAuth, adminController.getAdminProducts);
 
