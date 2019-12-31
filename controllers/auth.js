@@ -179,8 +179,6 @@ exports.postReset = (req, res, next) => {
       })
       .then((result) => {
         res.redirect("/login");
-        // const SENDGRID_API_KEY =
-        //   "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";
         sgMail.setApiKey(process.env.SENDGRID_API_KEY);
         const msg = {
           to: req.body.email,
