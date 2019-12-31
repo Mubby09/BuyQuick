@@ -1,20 +1,10 @@
 const bcrypt = require("bcryptjs");
 const User = require("../models/user");
 const isAuth = require("../middleware/is-auth");
-// const nodemailer = require("nodemailer");
-// const sendgridTransport = require("nodemailer-sendgrid-transport");
 const crypto = require("crypto");
 const sgMail = require("@sendgrid/mail");
 const { validationResult } = require("express-validator/check");
-
-// const transporter = nodemailer.createTransport(
-//   sendgridTransport({
-//     auth: {
-//       api_key:
-//         "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"
-//     }
-//   })
-// );
+require("dotenv").config();
 
 exports.getLogin = (req, res, next) => {
   let message = req.flash("error");
@@ -131,9 +121,7 @@ exports.postSignup = (req, res, next) => {
         })
         .then((result) => {
           res.redirect("/login");
-          const SENDGRID_API_KEY =
-            "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";
-          sgMail.setApiKey(SENDGRID_API_KEY);
+          sgMail.setApiKey(process.env.SENDGRID_API_KEY);
           const msg = {
             to: email,
             from: "nodeJSPractice@example.com",
@@ -191,9 +179,9 @@ exports.postReset = (req, res, next) => {
       })
       .then((result) => {
         res.redirect("/login");
-        const SENDGRID_API_KEY =
-          "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";
-        sgMail.setApiKey(SENDGRID_API_KEY);
+        // const SENDGRID_API_KEY =
+        //   "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";
+        sgMail.setApiKey(process.env.SENDGRID_API_KEY);
         const msg = {
           to: req.body.email,
           from: "nodeJSPractice@example.com",
@@ -257,17 +245,3 @@ exports.postNewPassword = (req, res, next) => {
       console.log(err);
     });
 };
-
-// "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" (second)
-// "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" (First sendgrid API key)
-// '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'
-
-// transporter.sendMail({
-//   to: req.body.email,
-//   from: "nodeJsProject@me.com",
-//   subject: "PASSWORD RESET",
-//   html: `
-//   <p>You requested a password reset</p>
-//   <p>Click this  <a href = 'http://localhost:3000/reset/${token}'>LINK</a>to reset Password</p>
-//   `
-// });

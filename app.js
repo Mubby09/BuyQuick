@@ -11,6 +11,9 @@ const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const flash = require("connect-flash");
 const csrf = require("csurf");
+require("dotenv").config();
+
+//console.log(process.env);
 
 const MONGODB_URI =
   "mongodb+srv://Mubby09:RLimmxv9VO7fn0y8@cluster0-mrvec.mongodb.net/shop";
