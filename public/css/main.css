@@ -1,0 +1,246 @@
+@import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-size: 1rem;
+  font-family: "Muli", sans-serif;
+  color: gray;
+  background-color: lavenderblush;
+  justify-content: center;
+  text-align: center;
+}
+/* .nav-header {
+  background: rgb(250, 154, 120);
+  height: 10vh;
+  width: 100%;
+  color: aqua;
+  margin-bottom: 10px;
+  position: fixed;
+} */
+
+header {
+  background: rgb(250, 154, 120);
+  height: 10vh;
+  width: 100%;
+  color: aqua;
+  margin-bottom: 10px;
+}
+.centered {
+  display: grid;
+  justify-content: center;
+  text-align: center;
+}
+.list {
+  display: flex;
+  /* grid-template-columns: repeat(10, 1fr); */
+  padding-top: 30px;
+  justify-content: space-between;
+  align-content: center;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  flex: 1;
+}
+
+nav ul li {
+  list-style: none;
+  padding: 0rem 1rem;
+  flex: 1;
+}
+nav ul li a {
+  text-decoration: none;
+  color: white;
+}
+
+.Logsig {
+  flex: 1;
+  display: flex;
+}
+
+.container {
+  max-width: 1100px;
+  padding: 0 2rem;
+  overflow: hidden;
+  margin: auto;
+}
+
+/* form {
+  margin: 2rem;
+} */
+
+.btn {
+  border: 1px solid black;
+  background: white;
+  color: black;
+  border-radius: 5px;
+  padding: 0.5rem;
+  margin: 2rem;
+  font-size: medium;
+  cursor: pointer;
+  text-align: center;
+  margin: auto;
+  display: block;
+  width: 10rem;
+  max-width: 90%;
+  margin-bottom: 2rem;
+}
+.btn:hover {
+  transition: all 0.7s;
+  background: rgb(27, 26, 19);
+  color: rgb(221, 221, 204);
+}
+input {
+  height: 20px;
+  width: 50%;
+}
+a.active {
+  color: yellow;
+}
+
+.grid {
+  display: grid;
+  justify-content: center;
+  grid-gap: 0.4rem;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+  margin: 1rem 1rem;
+  padding: 2rem;
+  height: 100%;
+}
+
+.product-item {
+  background: black;
+  /* margin-top: 5px; */
+}
+
+.product__title {
+  padding: 1rem;
+}
+
+img {
+  height: 200px;
+  width: 200px;
+  text-align: center;
+  margin: auto;
+}
+
+.card__actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0.5rem;
+  text-align: center;
+}
+.card__content {
+  text-align: center;
+}
+
+.form-control {
+  padding: 1rem;
+  text-align: center;
+  margin: 0 auto;
+  align-items: center;
+}
+
+input,
+label {
+  text-align: center;
+  align-items: center;
+  margin: auto;
+  display: block;
+  width: 20rem;
+  max-width: 90%;
+}
+
+.logout {
+  background: none;
+  border: none;
+  font-style: 0.7rem;
+  cursor: pointer;
+  color: aliceblue;
+  text-transform: uppercase;
+}
+
+.error-message {
+  margin: auto;
+  max-width: 1100px;
+  width: 40%;
+  border: 1px solid whitesmoke;
+  background: orange;
+  height: 10.1vh;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.display {
+  display: none;
+}
+
+.seller {
+  border: 1px solid white;
+  font: bolder;
+  border-radius: 5px;
+  text-transform: uppercase;
+  margin: 1rem;
+  text-align: center;
+  padding: 1rem;
+}
+
+.pagination {
+  margin: 1rem 1rem;
+  justify-content: center;
+  text-align: center;
+}
+.pagination a {
+  text-decoration: none;
+  color: greenyellow;
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: black;
+}
+
+.pagination a:hover {
+  background: greenyellow;
+  color: black;
+  /* box-shadow: rgb(27, 26, 19); */
+}
+
+@media (max-width: 700px) {
+  .grid {
+    display: grid;
+    justify-content: center;
+    grid-gap: 0.5rem;
+    grid-template-columns: 1fr;
+    text-align: center;
+    margin: auto;
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 701px) {
+  .grid {
+    display: grid;
+    justify-content: center;
+    grid-gap: 0.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    text-align: center;
+    margin: auto;
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 1000px) {
+  .grid {
+    display: grid;
+    justify-content: center;
+    grid-gap: 0.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+    margin: auto;
+    padding: 1rem;
+  }
+}

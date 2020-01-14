@@ -1,0 +1,42 @@
+<%- include('../includes/head.ejs') %>
+
+  </head>
+  <body>
+      <%- include('../includes/navigation.ejs') %>
+
+    <main>
+      <div class="container">
+          <% if (errorMessage) { %>
+            <div class="error-message"> <%= errorMessage %> </div>
+          <% } %>
+        <form action="/add-product" method="POST" enctype="multipart/form-data">
+          <input type="hidden" name="_csrf" value='<%= csrfToken %>'>
+          <div class="form-control">
+            <label for="title">Title</label>
+            <input type="text" name="title" id='title'  value="<%= oldInput.title %>" />
+          </div>
+        <div class="form-control">
+          <label for="image">Choose Image</label>
+          <input type="file" name="image" id="image"/>
+        </div>
+        <div class="form-control">
+          <label for="price">Price</label>
+          <input type="number" name="price" id="price" step="0.01" value="<%= oldInput.price %>" />
+        </div>
+        <div class="form-control">
+          <label for="sellerName">Seller's Name</label>
+          <input type="text" name="sellerName" id='sellerName'  value="<%= oldInput.sellerName %>" />
+        </div>
+        <!-- <div class="form-control">
+          <label for="phone">Phone Number</label>
+          <input type="tel" name="phone" id='phone' value="<%= oldInput.phone %>" /> 
+        </div> -->
+        <div class="form-control">
+          <label for="description">Description</label>
+          <textarea name="description" id="description"  cols="40" rows="10" value="<%= oldInput.description %>" placeholder="Description has has to be more than 5 letters long" ></textarea>
+        </div>
+        <button class="btn" type="submit">ADD PRODUCT</button>
+        </form>
+      </div>
+    </main>
+    <%- include('../includes/end.ejs') %>
