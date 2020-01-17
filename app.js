@@ -14,7 +14,7 @@ const MongoDBStore = require("connect-mongodb-session")(session);
 const flash = require("connect-flash");
 const csrf = require("csurf");
 const User = require("./models/user");
-//require("dotenv").config();
+require("dotenv").config();
 
 //console.log(process.env);
 
