@@ -115,14 +115,15 @@ app.use = (error, req, res, next) => {
 mongoose
   .connect(MONGODB_URI)
   .then((result) => {
-    console.log("connected!!!");
-    app.listen(process.env.PORT || 3000);
+    // console.log("connected!!!");
+    // app.listen(process.env.PORT || 3000);
+    var server = app.listen(process.env.PORT || 3000, function() {
+      var port = server.address().port;
+      console.log("Express is working on port " + port);
+    });
   })
   .catch((err) => {
     console.log(err);
   });
 
 //You can never send a response and then use next() . Doing that will result in errors.
-
-//UsernameForAdminOnMongoAtlas1: {Mubarak, Password: olamilekan1996}
-//UsernameForAdminOnMongoAtlas2: {Mubby09, Password: RLimmxv9VO7fn0y8}

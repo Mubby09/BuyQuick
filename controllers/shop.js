@@ -10,7 +10,7 @@ exports.getIndex = (req, res, next) => {
       res.render("shop/index", {
         prods: products,
         headTitle: "SHOPPING",
-        path: "localhost:3000/"
+        path: "/"
         // isAuthenticated: req.session.loggedIn,
         // csrfToken: req.csrfToken()
       });
