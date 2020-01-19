@@ -42,9 +42,7 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-const MONGODB_URI =
-  "mongodb://Mubby09:Olamilekan1996@ds263928.mlab.com:63928/heroku_8skxjzct";
-// "mongodb+srv://Mubby09:RLimmxv9VO7fn0y8@cluster0-mrvec.mongodb.net/shop";
+const MONGODB_URI = process.env.MONGODB_CREDENTIALS;
 
 const store = new MongoDBStore({
   uri: MONGODB_URI,
