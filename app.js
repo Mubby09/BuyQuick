@@ -42,7 +42,8 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-const MONGODB_URI = process.env.MONGODB_CREDENTIALS;
+const MONGODB_URI =
+  "mongodb://Mubby09:Olamilekan1996@ds263928.mlab.com:63928/heroku_8skxjzct";
 
 const store = new MongoDBStore({
   uri: MONGODB_URI,
