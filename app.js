@@ -9,9 +9,6 @@ const shopRouter = require("./routes/shop");
 const authRouter = require("./routes/auth");
 const bodyParser = require("body-parser");
 const multer = require("multer"); //For parsing files from the request body
-var multerS3 = require("multer-s3");
-var aws = require("aws-sdk");
-var s3 = new aws.S3();
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const flash = require("connect-flash"); //For flashing messages on the screen
@@ -27,31 +24,14 @@ require("dotenv").config();
 app.set("view engine", "ejs");
 app.set("views", "views");
 
-var upload = multer({
-  storage: multerS3({
-    s3: s3,
-    bucket: "some-bucket",
-    metadata: function(req, file, cb) {
-      cb(null, { fieldName: file.fieldname });
-    },
-    key: function(req, file, cb) {
-      cb(null, Date.now().toString());
-    }
-  })
+const fileStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "photos");
+  },
+  filename: (req, file, cb) => {
+    cb(null, new Date().toISOString() + "-" + file.originalname);
+  }
 });
-
-app.post("/upload", upload.array("photos", 3), function(req, res, next) {
-  res.send("Successfully uploaded " + req.files.length + " files!");
-});
-
-// const fileStorage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, "photos");
-//   },
-//   filename: (req, file, cb) => {
-//     cb(null, new Date().toISOString() + "-" + file.originalname);
-//   }
-// });
 
 const fileFilter = (req, file, cb) => {
   if (
@@ -76,10 +56,10 @@ const csrfProtection = csrf();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(multer({ fileFilter: fileFilter }).single("image"));
-// storage: fileStorage,
-
-app.use(express.static(path.join(__dirname, "public")));
+app.use(
+  multer({ storage: fileStorage, fileFilter: fileFilter }).single("image")
+);
+storage: fileStorage, app.use(express.static(path.join(__dirname, "public")));
 app.use("/photos", express.static(path.join(__dirname, "photos")));
 
 app.use(
