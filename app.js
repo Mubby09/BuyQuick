@@ -16,7 +16,7 @@ const csrf = require("csurf");
 const User = require("./models/user");
 require("dotenv").config();
 
-console.log(process.env);
+// console.log(process.env);
 
 app.set("view engine", "ejs");
 app.set("views", "views");
