@@ -16,7 +16,7 @@ const csrf = require("csurf");
 const User = require("./models/user");
 require("dotenv").config();
 
-//console.log(process.env);
+console.log(process.env);
 
 app.set("view engine", "ejs");
 app.set("views", "views");
@@ -42,8 +42,7 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-const MONGODB_URI =
-  "mongodb://Mubby09:Olamilekan1996@ds263928.mlab.com:63928/heroku_8skxjzct";
+const MONGODB_URI = `mongodb://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@ds263928.mlab.com:63928/${process.env.MONGODB_DATABASE}`;
 
 const store = new MongoDBStore({
   uri: MONGODB_URI,
@@ -53,7 +52,7 @@ const store = new MongoDBStore({
 const csrfProtection = csrf();
 
 app.use(bodyParser.urlencoded({ extended: false }));
-//, fileFilter: fileFilter
+
 app.use(
   multer({ storage: fileStorage, fileFilter: fileFilter }).single("image")
 );
